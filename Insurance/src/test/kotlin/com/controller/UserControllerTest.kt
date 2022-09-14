@@ -1,4 +1,4 @@
-package Vehicle.Insurance.controller.controller
+package com.VehicleInsurance.com.controller
 
 
 
@@ -7,7 +7,7 @@ package Vehicle.Insurance.controller.controller
 import Vehicle.Insurance.model.User
 import Vehicle.Insurance.repository.UserRepository
 import Vehicle.Insurance.service.UserService
-import Vehicle.Insurance.controller.controller.UserController
+import com.controller.UserController
 import io.kotlintest.shouldBe
 
 import io.mockk.every
@@ -24,8 +24,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.returnResult
 import reactor.core.publisher.Flux
-
-
+import reactor.core.publisher.Mono
 
 
 @WebFluxTest(UserController::class)
@@ -94,6 +93,43 @@ class UserControllerTest {
 
         }
     }
+    @Test
+    fun `should be able to update the user`() {
+
+        val expectedResult =mapOf(
+
+            "id" to "1",
+            "first_name" to "nitin",
+            "last_name" to "pawar",
+            "email" to "nitin@gmail",
+            "phone_num" to 8793471790,
+            "password" to "123",
+            )
+
+        val user = User(
+             "1",
+            "nitin",
+            "pawar",
+            "nitin@gmail",
+             8793471790,
+             "123"
+
+        )
+                    every {
+            userService.updateUser("1",user)
+        } returns Mono.just(user)
+
+        val response = client.put()
+            .uri("/user/update/1")
+            .bodyValue(user)
+            .exchange()
+            .expectStatus().is2xxSuccessful
+
+        verify(exactly = 1) {
+            userService.updateUser("1",user)
+        }
+    }
+
 
 
 
