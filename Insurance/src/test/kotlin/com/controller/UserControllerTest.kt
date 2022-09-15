@@ -7,13 +7,12 @@ package com.VehicleInsurance.com.controller
 import Vehicle.Insurance.model.User
 import Vehicle.Insurance.repository.UserRepository
 import Vehicle.Insurance.service.UserService
-import com.controller.UserController
+import Vehicle.Insurance.controller.UserController
 import io.kotlintest.shouldBe
 
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import net.bytebuddy.matcher.ElementMatchers.returns
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest

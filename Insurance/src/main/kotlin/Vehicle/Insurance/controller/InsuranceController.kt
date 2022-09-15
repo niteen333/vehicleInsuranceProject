@@ -1,4 +1,4 @@
-package com.controller
+package Vehicle.Insurance.controller
 
 import Vehicle.Insurance.model.Insurance
 import Vehicle.Insurance.model.User
