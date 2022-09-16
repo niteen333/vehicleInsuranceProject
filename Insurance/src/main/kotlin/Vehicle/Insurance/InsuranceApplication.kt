@@ -9,6 +9,7 @@ class InsuranceApplication
 
 
 
+
 fun main(args: Array<String>) {
 	runApplication<InsuranceApplication>(*args)
 }

@@ -39,7 +39,7 @@ class ExceptionHandling {
 
 
     @ExceptionHandler
-    fun handleProductNotFoundException(ex: InsuranceNotFoundException): ResponseEntity<ErrorMessage1> {
+    fun handleInsuranceNotFoundException(ex: InsuranceNotFoundException): ResponseEntity<ErrorMessage1> {
         val errorMessage = ErrorMessage1(
             HttpStatus.NOT_FOUND.value(),
             ex.message

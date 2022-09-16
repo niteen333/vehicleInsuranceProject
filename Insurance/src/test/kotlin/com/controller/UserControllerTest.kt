@@ -1,9 +1,5 @@
 package com.VehicleInsurance.com.controller
 
-
-
-
-
 import Vehicle.Insurance.model.User
 import Vehicle.Insurance.repository.UserRepository
 import Vehicle.Insurance.service.UserService
@@ -128,9 +124,46 @@ class UserControllerTest {
             userService.updateUser("1",user)
         }
     }
+    @Test
+    fun`should able to delete user by Id`(){
+
+        val expectedResult =mapOf(
+
+            "id" to "1",
+            "first_name" to "nitin",
+            "last_name" to "pawar",
+            "email" to "nitin@gmail",
+            "phone_num" to 8793471790,
+            "password" to "123",
+        )
+
+        val user = User(
+            "1",
+            "nitin",
+            "pawar",
+            "nitin@gmail",
+            8793471790,
+            "123"
+
+        )
+        every {
+            userService.deleteById("1")
+        } returns Mono.empty()
+
+        val response = client.delete()
+            .uri("/api/v1/user/delete/id")
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().is2xxSuccessful
+
+        verify(exactly = 1) {
+            userService.deleteById("1")
+        }
+    }
+
+    }
 
 
 
 
-}
 
